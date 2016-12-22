@@ -9,6 +9,7 @@ RUN apt-get update && apt-get upgrade -y; \
     supervisor \
     openssh-server \
     software-properties-common \
+    jq \
   ; \
   apt-get clean; \
   du -h /var/cache
