@@ -1,5 +1,5 @@
 FROM ubuntu:xenial
-MAINTAINER Wurstmeister 
+MAINTAINER Helter Scelter
 
 
 RUN apt-get update && apt-get upgrade -y; \
@@ -36,4 +36,4 @@ RUN mkdir /var/run/sshd
 #RUN echo 'root:wurstmeister' | chpasswd
 #RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
-EXPOSE 22
+#EXPOSE 22

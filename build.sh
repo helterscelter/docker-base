@@ -1,1 +1,1 @@
-docker build -t wurstmeister/base:oracle-java8 -t wurstmeister/base:latest .
+docker build -t helterscelter/base:oracle-java8 -t helterscelter/base:latest .
