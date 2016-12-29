@@ -2,6 +2,10 @@ FROM ubuntu:xenial
 MAINTAINER Helter Scelter
 
 
+# expose the JAVA_HOME for this base image
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle/
+
+# upgrade any out of date packages from the base image, and install commonly used dependencies
 RUN apt-get update && apt-get upgrade -y; \
   apt-get install -y --fix-missing --no-install-recommends \
     unzip \
@@ -26,12 +30,15 @@ RUN apt-get update; \
   rm -Rf /var/cache/oracle-jdk8-installer ; 
 
 
-
-# expose the JAVA_HOME for this base image
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle/
-
 # prep for running sshd
 RUN mkdir /var/run/sshd
+
+# copy default settings and templates for supervisord to the proper locations
+ADD supervisor /etc/supervisor
+
+# add template engine/script and all other base-scripts to /usr/bin so derived containers can use it
+ADD usr/bin /usr/bin
+
 
 #RUN echo 'root:wurstmeister' | chpasswd
 #RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
